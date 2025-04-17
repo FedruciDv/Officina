@@ -18,7 +18,6 @@ export class PreventivesService{
         catch(err){
             throw new Error("C'è stato un problema")
         }
-
     }
 
     async create(preventive : CreatePreventiveDto) : Promise<PreventiveDto>{

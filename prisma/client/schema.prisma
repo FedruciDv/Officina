@@ -27,12 +27,13 @@ model User {
 }
 
 model Vehicle {
-  id          String       @id @default(uuid())
-  userId      String
-  plate       String       @unique
-  model       String
-  brand       String
-  km          Int
+  id     String @id @default(uuid())
+  userId String
+  plate  String @unique
+  model  String
+  brand  String
+  km     Int
+
   preventives Preventive[]
   user        User         @relation(fields: [userId], references: [id])
 }
@@ -48,13 +49,15 @@ model Preventive {
   type             String
   updated_at       DateTime @default(now())
   created_at       DateTime @default(now())
-  vehicle          Vehicle  @relation(fields: [idVehicle], references: [id])
-  work             Work?
+
+  vehicle Vehicle @relation(fields: [idVehicle], references: [id])
+  work    Work?
 }
 
 model Work {
   id               String   @id @default(uuid())
   idPreventive     String   @unique
+  idWorkType       String?
   start_date       DateTime
   end_date         DateTime
   status           String
@@ -63,4 +66,16 @@ model Work {
   created_at       DateTime @default(now())
 
   preventive Preventive @relation(fields: [idPreventive], references: [id])
+  worktype   Worktype?  @relation(fields: [idWorkType], references: [id])
+}
+
+model Worktype {
+  id String @id @default(uuid())
+
+  estimate_cost     Int
+  standard_duration Int
+  name              String
+  description       String
+
+  work Work[]
 }

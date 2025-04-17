@@ -7,8 +7,9 @@ import UsersModel from './users/users.module';
 import VehicleModule from './vehicles/vehicles.module';
 import { AuthModule } from './auth/auth.module';
 import { PreventivesModule } from './preventives/preventives.module';
+import { WorksModule } from './works/works.module';
 @Module({
-  imports: [UsersModel,VehicleModule,AuthModule,PreventivesModule],
+  imports: [UsersModel,VehicleModule,AuthModule,PreventivesModule,WorksModule],
   controllers: [AppController],
   providers: [AppService,PrismaService],
 })

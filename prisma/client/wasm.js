@@ -159,12 +159,21 @@ exports.Prisma.PreventiveScalarFieldEnum = {
 exports.Prisma.WorkScalarFieldEnum = {
   id: 'id',
   idPreventive: 'idPreventive',
+  idWorkType: 'idWorkType',
   start_date: 'start_date',
   end_date: 'end_date',
   status: 'status',
   additional_notes: 'additional_notes',
   updated_at: 'updated_at',
   created_at: 'created_at'
+};
+
+exports.Prisma.WorktypeScalarFieldEnum = {
+  id: 'id',
+  estimate_cost: 'estimate_cost',
+  standard_duration: 'standard_duration',
+  name: 'name',
+  description: 'description'
 };
 
 exports.Prisma.SortOrder = {
@@ -177,12 +186,18 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
   Vehicle: 'Vehicle',
   Preventive: 'Preventive',
-  Work: 'Work'
+  Work: 'Work',
+  Worktype: 'Worktype'
 };
 
 /**

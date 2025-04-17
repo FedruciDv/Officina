@@ -33,6 +33,11 @@ export type Preventive = $Result.DefaultSelection<Prisma.$PreventivePayload>
  * 
  */
 export type Work = $Result.DefaultSelection<Prisma.$WorkPayload>
+/**
+ * Model Worktype
+ * 
+ */
+export type Worktype = $Result.DefaultSelection<Prisma.$WorktypePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -198,6 +203,16 @@ export class PrismaClient<
     * ```
     */
   get work(): Prisma.WorkDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.worktype`: Exposes CRUD operations for the **Worktype** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Worktypes
+    * const worktypes = await prisma.worktype.findMany()
+    * ```
+    */
+  get worktype(): Prisma.WorktypeDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -641,7 +656,8 @@ export namespace Prisma {
     User: 'User',
     Vehicle: 'Vehicle',
     Preventive: 'Preventive',
-    Work: 'Work'
+    Work: 'Work',
+    Worktype: 'Worktype'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -660,7 +676,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "vehicle" | "preventive" | "work"
+      modelProps: "user" | "vehicle" | "preventive" | "work" | "worktype"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -960,6 +976,80 @@ export namespace Prisma {
           }
         }
       }
+      Worktype: {
+        payload: Prisma.$WorktypePayload<ExtArgs>
+        fields: Prisma.WorktypeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WorktypeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorktypePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WorktypeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorktypePayload>
+          }
+          findFirst: {
+            args: Prisma.WorktypeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorktypePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WorktypeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorktypePayload>
+          }
+          findMany: {
+            args: Prisma.WorktypeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorktypePayload>[]
+          }
+          create: {
+            args: Prisma.WorktypeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorktypePayload>
+          }
+          createMany: {
+            args: Prisma.WorktypeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WorktypeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorktypePayload>[]
+          }
+          delete: {
+            args: Prisma.WorktypeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorktypePayload>
+          }
+          update: {
+            args: Prisma.WorktypeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorktypePayload>
+          }
+          deleteMany: {
+            args: Prisma.WorktypeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WorktypeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WorktypeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorktypePayload>[]
+          }
+          upsert: {
+            args: Prisma.WorktypeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WorktypePayload>
+          }
+          aggregate: {
+            args: Prisma.WorktypeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWorktype>
+          }
+          groupBy: {
+            args: Prisma.WorktypeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WorktypeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WorktypeCountArgs<ExtArgs>
+            result: $Utils.Optional<WorktypeCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1048,6 +1138,7 @@ export namespace Prisma {
     vehicle?: VehicleOmit
     preventive?: PreventiveOmit
     work?: WorkOmit
+    worktype?: WorktypeOmit
   }
 
   /* Types for Logging */
@@ -1196,6 +1287,37 @@ export namespace Prisma {
    */
   export type VehicleCountOutputTypeCountPreventivesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PreventiveWhereInput
+  }
+
+
+  /**
+   * Count Type WorktypeCountOutputType
+   */
+
+  export type WorktypeCountOutputType = {
+    work: number
+  }
+
+  export type WorktypeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    work?: boolean | WorktypeCountOutputTypeCountWorkArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * WorktypeCountOutputType without action
+   */
+  export type WorktypeCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WorktypeCountOutputType
+     */
+    select?: WorktypeCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * WorktypeCountOutputType without action
+   */
+  export type WorktypeCountOutputTypeCountWorkArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WorkWhereInput
   }
 
 
@@ -4722,6 +4844,7 @@ export namespace Prisma {
   export type WorkMinAggregateOutputType = {
     id: string | null
     idPreventive: string | null
+    idWorkType: string | null
     start_date: Date | null
     end_date: Date | null
     status: string | null
@@ -4733,6 +4856,7 @@ export namespace Prisma {
   export type WorkMaxAggregateOutputType = {
     id: string | null
     idPreventive: string | null
+    idWorkType: string | null
     start_date: Date | null
     end_date: Date | null
     status: string | null
@@ -4744,6 +4868,7 @@ export namespace Prisma {
   export type WorkCountAggregateOutputType = {
     id: number
     idPreventive: number
+    idWorkType: number
     start_date: number
     end_date: number
     status: number
@@ -4757,6 +4882,7 @@ export namespace Prisma {
   export type WorkMinAggregateInputType = {
     id?: true
     idPreventive?: true
+    idWorkType?: true
     start_date?: true
     end_date?: true
     status?: true
@@ -4768,6 +4894,7 @@ export namespace Prisma {
   export type WorkMaxAggregateInputType = {
     id?: true
     idPreventive?: true
+    idWorkType?: true
     start_date?: true
     end_date?: true
     status?: true
@@ -4779,6 +4906,7 @@ export namespace Prisma {
   export type WorkCountAggregateInputType = {
     id?: true
     idPreventive?: true
+    idWorkType?: true
     start_date?: true
     end_date?: true
     status?: true
@@ -4863,6 +4991,7 @@ export namespace Prisma {
   export type WorkGroupByOutputType = {
     id: string
     idPreventive: string
+    idWorkType: string | null
     start_date: Date
     end_date: Date
     status: string
@@ -4891,6 +5020,7 @@ export namespace Prisma {
   export type WorkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     idPreventive?: boolean
+    idWorkType?: boolean
     start_date?: boolean
     end_date?: boolean
     status?: boolean
@@ -4898,11 +5028,13 @@ export namespace Prisma {
     updated_at?: boolean
     created_at?: boolean
     preventive?: boolean | PreventiveDefaultArgs<ExtArgs>
+    worktype?: boolean | Work$worktypeArgs<ExtArgs>
   }, ExtArgs["result"]["work"]>
 
   export type WorkSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     idPreventive?: boolean
+    idWorkType?: boolean
     start_date?: boolean
     end_date?: boolean
     status?: boolean
@@ -4910,11 +5042,13 @@ export namespace Prisma {
     updated_at?: boolean
     created_at?: boolean
     preventive?: boolean | PreventiveDefaultArgs<ExtArgs>
+    worktype?: boolean | Work$worktypeArgs<ExtArgs>
   }, ExtArgs["result"]["work"]>
 
   export type WorkSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     idPreventive?: boolean
+    idWorkType?: boolean
     start_date?: boolean
     end_date?: boolean
     status?: boolean
@@ -4922,11 +5056,13 @@ export namespace Prisma {
     updated_at?: boolean
     created_at?: boolean
     preventive?: boolean | PreventiveDefaultArgs<ExtArgs>
+    worktype?: boolean | Work$worktypeArgs<ExtArgs>
   }, ExtArgs["result"]["work"]>
 
   export type WorkSelectScalar = {
     id?: boolean
     idPreventive?: boolean
+    idWorkType?: boolean
     start_date?: boolean
     end_date?: boolean
     status?: boolean
@@ -4935,25 +5071,30 @@ export namespace Prisma {
     created_at?: boolean
   }
 
-  export type WorkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "idPreventive" | "start_date" | "end_date" | "status" | "additional_notes" | "updated_at" | "created_at", ExtArgs["result"]["work"]>
+  export type WorkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "idPreventive" | "idWorkType" | "start_date" | "end_date" | "status" | "additional_notes" | "updated_at" | "created_at", ExtArgs["result"]["work"]>
   export type WorkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     preventive?: boolean | PreventiveDefaultArgs<ExtArgs>
+    worktype?: boolean | Work$worktypeArgs<ExtArgs>
   }
   export type WorkIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     preventive?: boolean | PreventiveDefaultArgs<ExtArgs>
+    worktype?: boolean | Work$worktypeArgs<ExtArgs>
   }
   export type WorkIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     preventive?: boolean | PreventiveDefaultArgs<ExtArgs>
+    worktype?: boolean | Work$worktypeArgs<ExtArgs>
   }
 
   export type $WorkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Work"
     objects: {
       preventive: Prisma.$PreventivePayload<ExtArgs>
+      worktype: Prisma.$WorktypePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       idPreventive: string
+      idWorkType: string | null
       start_date: Date
       end_date: Date
       status: string
@@ -5355,6 +5496,7 @@ export namespace Prisma {
   export interface Prisma__WorkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     preventive<T extends PreventiveDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PreventiveDefaultArgs<ExtArgs>>): Prisma__PreventiveClient<$Result.GetResult<Prisma.$PreventivePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    worktype<T extends Work$worktypeArgs<ExtArgs> = {}>(args?: Subset<T, Work$worktypeArgs<ExtArgs>>): Prisma__WorktypeClient<$Result.GetResult<Prisma.$WorktypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5386,6 +5528,7 @@ export namespace Prisma {
   interface WorkFieldRefs {
     readonly id: FieldRef<"Work", 'String'>
     readonly idPreventive: FieldRef<"Work", 'String'>
+    readonly idWorkType: FieldRef<"Work", 'String'>
     readonly start_date: FieldRef<"Work", 'DateTime'>
     readonly end_date: FieldRef<"Work", 'DateTime'>
     readonly status: FieldRef<"Work", 'String'>
@@ -5788,6 +5931,25 @@ export namespace Prisma {
   }
 
   /**
+   * Work.worktype
+   */
+  export type Work$worktypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Worktype
+     */
+    select?: WorktypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Worktype
+     */
+    omit?: WorktypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorktypeInclude<ExtArgs> | null
+    where?: WorktypeWhereInput
+  }
+
+  /**
    * Work without action
    */
   export type WorkDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5803,6 +5965,1114 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: WorkInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Worktype
+   */
+
+  export type AggregateWorktype = {
+    _count: WorktypeCountAggregateOutputType | null
+    _avg: WorktypeAvgAggregateOutputType | null
+    _sum: WorktypeSumAggregateOutputType | null
+    _min: WorktypeMinAggregateOutputType | null
+    _max: WorktypeMaxAggregateOutputType | null
+  }
+
+  export type WorktypeAvgAggregateOutputType = {
+    estimate_cost: number | null
+    standard_duration: number | null
+  }
+
+  export type WorktypeSumAggregateOutputType = {
+    estimate_cost: number | null
+    standard_duration: number | null
+  }
+
+  export type WorktypeMinAggregateOutputType = {
+    id: string | null
+    estimate_cost: number | null
+    standard_duration: number | null
+    name: string | null
+    description: string | null
+  }
+
+  export type WorktypeMaxAggregateOutputType = {
+    id: string | null
+    estimate_cost: number | null
+    standard_duration: number | null
+    name: string | null
+    description: string | null
+  }
+
+  export type WorktypeCountAggregateOutputType = {
+    id: number
+    estimate_cost: number
+    standard_duration: number
+    name: number
+    description: number
+    _all: number
+  }
+
+
+  export type WorktypeAvgAggregateInputType = {
+    estimate_cost?: true
+    standard_duration?: true
+  }
+
+  export type WorktypeSumAggregateInputType = {
+    estimate_cost?: true
+    standard_duration?: true
+  }
+
+  export type WorktypeMinAggregateInputType = {
+    id?: true
+    estimate_cost?: true
+    standard_duration?: true
+    name?: true
+    description?: true
+  }
+
+  export type WorktypeMaxAggregateInputType = {
+    id?: true
+    estimate_cost?: true
+    standard_duration?: true
+    name?: true
+    description?: true
+  }
+
+  export type WorktypeCountAggregateInputType = {
+    id?: true
+    estimate_cost?: true
+    standard_duration?: true
+    name?: true
+    description?: true
+    _all?: true
+  }
+
+  export type WorktypeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Worktype to aggregate.
+     */
+    where?: WorktypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Worktypes to fetch.
+     */
+    orderBy?: WorktypeOrderByWithRelationInput | WorktypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WorktypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Worktypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Worktypes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Worktypes
+    **/
+    _count?: true | WorktypeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: WorktypeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: WorktypeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WorktypeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WorktypeMaxAggregateInputType
+  }
+
+  export type GetWorktypeAggregateType<T extends WorktypeAggregateArgs> = {
+        [P in keyof T & keyof AggregateWorktype]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWorktype[P]>
+      : GetScalarType<T[P], AggregateWorktype[P]>
+  }
+
+
+
+
+  export type WorktypeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WorktypeWhereInput
+    orderBy?: WorktypeOrderByWithAggregationInput | WorktypeOrderByWithAggregationInput[]
+    by: WorktypeScalarFieldEnum[] | WorktypeScalarFieldEnum
+    having?: WorktypeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WorktypeCountAggregateInputType | true
+    _avg?: WorktypeAvgAggregateInputType
+    _sum?: WorktypeSumAggregateInputType
+    _min?: WorktypeMinAggregateInputType
+    _max?: WorktypeMaxAggregateInputType
+  }
+
+  export type WorktypeGroupByOutputType = {
+    id: string
+    estimate_cost: number
+    standard_duration: number
+    name: string
+    description: string
+    _count: WorktypeCountAggregateOutputType | null
+    _avg: WorktypeAvgAggregateOutputType | null
+    _sum: WorktypeSumAggregateOutputType | null
+    _min: WorktypeMinAggregateOutputType | null
+    _max: WorktypeMaxAggregateOutputType | null
+  }
+
+  type GetWorktypeGroupByPayload<T extends WorktypeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WorktypeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WorktypeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WorktypeGroupByOutputType[P]>
+            : GetScalarType<T[P], WorktypeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WorktypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    estimate_cost?: boolean
+    standard_duration?: boolean
+    name?: boolean
+    description?: boolean
+    work?: boolean | Worktype$workArgs<ExtArgs>
+    _count?: boolean | WorktypeCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["worktype"]>
+
+  export type WorktypeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    estimate_cost?: boolean
+    standard_duration?: boolean
+    name?: boolean
+    description?: boolean
+  }, ExtArgs["result"]["worktype"]>
+
+  export type WorktypeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    estimate_cost?: boolean
+    standard_duration?: boolean
+    name?: boolean
+    description?: boolean
+  }, ExtArgs["result"]["worktype"]>
+
+  export type WorktypeSelectScalar = {
+    id?: boolean
+    estimate_cost?: boolean
+    standard_duration?: boolean
+    name?: boolean
+    description?: boolean
+  }
+
+  export type WorktypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "estimate_cost" | "standard_duration" | "name" | "description", ExtArgs["result"]["worktype"]>
+  export type WorktypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    work?: boolean | Worktype$workArgs<ExtArgs>
+    _count?: boolean | WorktypeCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type WorktypeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type WorktypeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $WorktypePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Worktype"
+    objects: {
+      work: Prisma.$WorkPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      estimate_cost: number
+      standard_duration: number
+      name: string
+      description: string
+    }, ExtArgs["result"]["worktype"]>
+    composites: {}
+  }
+
+  type WorktypeGetPayload<S extends boolean | null | undefined | WorktypeDefaultArgs> = $Result.GetResult<Prisma.$WorktypePayload, S>
+
+  type WorktypeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WorktypeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WorktypeCountAggregateInputType | true
+    }
+
+  export interface WorktypeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Worktype'], meta: { name: 'Worktype' } }
+    /**
+     * Find zero or one Worktype that matches the filter.
+     * @param {WorktypeFindUniqueArgs} args - Arguments to find a Worktype
+     * @example
+     * // Get one Worktype
+     * const worktype = await prisma.worktype.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WorktypeFindUniqueArgs>(args: SelectSubset<T, WorktypeFindUniqueArgs<ExtArgs>>): Prisma__WorktypeClient<$Result.GetResult<Prisma.$WorktypePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Worktype that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WorktypeFindUniqueOrThrowArgs} args - Arguments to find a Worktype
+     * @example
+     * // Get one Worktype
+     * const worktype = await prisma.worktype.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WorktypeFindUniqueOrThrowArgs>(args: SelectSubset<T, WorktypeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WorktypeClient<$Result.GetResult<Prisma.$WorktypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Worktype that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WorktypeFindFirstArgs} args - Arguments to find a Worktype
+     * @example
+     * // Get one Worktype
+     * const worktype = await prisma.worktype.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WorktypeFindFirstArgs>(args?: SelectSubset<T, WorktypeFindFirstArgs<ExtArgs>>): Prisma__WorktypeClient<$Result.GetResult<Prisma.$WorktypePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Worktype that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WorktypeFindFirstOrThrowArgs} args - Arguments to find a Worktype
+     * @example
+     * // Get one Worktype
+     * const worktype = await prisma.worktype.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WorktypeFindFirstOrThrowArgs>(args?: SelectSubset<T, WorktypeFindFirstOrThrowArgs<ExtArgs>>): Prisma__WorktypeClient<$Result.GetResult<Prisma.$WorktypePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Worktypes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WorktypeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Worktypes
+     * const worktypes = await prisma.worktype.findMany()
+     * 
+     * // Get first 10 Worktypes
+     * const worktypes = await prisma.worktype.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const worktypeWithIdOnly = await prisma.worktype.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WorktypeFindManyArgs>(args?: SelectSubset<T, WorktypeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorktypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Worktype.
+     * @param {WorktypeCreateArgs} args - Arguments to create a Worktype.
+     * @example
+     * // Create one Worktype
+     * const Worktype = await prisma.worktype.create({
+     *   data: {
+     *     // ... data to create a Worktype
+     *   }
+     * })
+     * 
+     */
+    create<T extends WorktypeCreateArgs>(args: SelectSubset<T, WorktypeCreateArgs<ExtArgs>>): Prisma__WorktypeClient<$Result.GetResult<Prisma.$WorktypePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Worktypes.
+     * @param {WorktypeCreateManyArgs} args - Arguments to create many Worktypes.
+     * @example
+     * // Create many Worktypes
+     * const worktype = await prisma.worktype.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WorktypeCreateManyArgs>(args?: SelectSubset<T, WorktypeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Worktypes and returns the data saved in the database.
+     * @param {WorktypeCreateManyAndReturnArgs} args - Arguments to create many Worktypes.
+     * @example
+     * // Create many Worktypes
+     * const worktype = await prisma.worktype.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Worktypes and only return the `id`
+     * const worktypeWithIdOnly = await prisma.worktype.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WorktypeCreateManyAndReturnArgs>(args?: SelectSubset<T, WorktypeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorktypePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Worktype.
+     * @param {WorktypeDeleteArgs} args - Arguments to delete one Worktype.
+     * @example
+     * // Delete one Worktype
+     * const Worktype = await prisma.worktype.delete({
+     *   where: {
+     *     // ... filter to delete one Worktype
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WorktypeDeleteArgs>(args: SelectSubset<T, WorktypeDeleteArgs<ExtArgs>>): Prisma__WorktypeClient<$Result.GetResult<Prisma.$WorktypePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Worktype.
+     * @param {WorktypeUpdateArgs} args - Arguments to update one Worktype.
+     * @example
+     * // Update one Worktype
+     * const worktype = await prisma.worktype.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WorktypeUpdateArgs>(args: SelectSubset<T, WorktypeUpdateArgs<ExtArgs>>): Prisma__WorktypeClient<$Result.GetResult<Prisma.$WorktypePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Worktypes.
+     * @param {WorktypeDeleteManyArgs} args - Arguments to filter Worktypes to delete.
+     * @example
+     * // Delete a few Worktypes
+     * const { count } = await prisma.worktype.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WorktypeDeleteManyArgs>(args?: SelectSubset<T, WorktypeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Worktypes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WorktypeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Worktypes
+     * const worktype = await prisma.worktype.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WorktypeUpdateManyArgs>(args: SelectSubset<T, WorktypeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Worktypes and returns the data updated in the database.
+     * @param {WorktypeUpdateManyAndReturnArgs} args - Arguments to update many Worktypes.
+     * @example
+     * // Update many Worktypes
+     * const worktype = await prisma.worktype.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Worktypes and only return the `id`
+     * const worktypeWithIdOnly = await prisma.worktype.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WorktypeUpdateManyAndReturnArgs>(args: SelectSubset<T, WorktypeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorktypePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Worktype.
+     * @param {WorktypeUpsertArgs} args - Arguments to update or create a Worktype.
+     * @example
+     * // Update or create a Worktype
+     * const worktype = await prisma.worktype.upsert({
+     *   create: {
+     *     // ... data to create a Worktype
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Worktype we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WorktypeUpsertArgs>(args: SelectSubset<T, WorktypeUpsertArgs<ExtArgs>>): Prisma__WorktypeClient<$Result.GetResult<Prisma.$WorktypePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Worktypes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WorktypeCountArgs} args - Arguments to filter Worktypes to count.
+     * @example
+     * // Count the number of Worktypes
+     * const count = await prisma.worktype.count({
+     *   where: {
+     *     // ... the filter for the Worktypes we want to count
+     *   }
+     * })
+    **/
+    count<T extends WorktypeCountArgs>(
+      args?: Subset<T, WorktypeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WorktypeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Worktype.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WorktypeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WorktypeAggregateArgs>(args: Subset<T, WorktypeAggregateArgs>): Prisma.PrismaPromise<GetWorktypeAggregateType<T>>
+
+    /**
+     * Group by Worktype.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WorktypeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WorktypeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WorktypeGroupByArgs['orderBy'] }
+        : { orderBy?: WorktypeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WorktypeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWorktypeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Worktype model
+   */
+  readonly fields: WorktypeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Worktype.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WorktypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    work<T extends Worktype$workArgs<ExtArgs> = {}>(args?: Subset<T, Worktype$workArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Worktype model
+   */
+  interface WorktypeFieldRefs {
+    readonly id: FieldRef<"Worktype", 'String'>
+    readonly estimate_cost: FieldRef<"Worktype", 'Int'>
+    readonly standard_duration: FieldRef<"Worktype", 'Int'>
+    readonly name: FieldRef<"Worktype", 'String'>
+    readonly description: FieldRef<"Worktype", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Worktype findUnique
+   */
+  export type WorktypeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Worktype
+     */
+    select?: WorktypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Worktype
+     */
+    omit?: WorktypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorktypeInclude<ExtArgs> | null
+    /**
+     * Filter, which Worktype to fetch.
+     */
+    where: WorktypeWhereUniqueInput
+  }
+
+  /**
+   * Worktype findUniqueOrThrow
+   */
+  export type WorktypeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Worktype
+     */
+    select?: WorktypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Worktype
+     */
+    omit?: WorktypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorktypeInclude<ExtArgs> | null
+    /**
+     * Filter, which Worktype to fetch.
+     */
+    where: WorktypeWhereUniqueInput
+  }
+
+  /**
+   * Worktype findFirst
+   */
+  export type WorktypeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Worktype
+     */
+    select?: WorktypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Worktype
+     */
+    omit?: WorktypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorktypeInclude<ExtArgs> | null
+    /**
+     * Filter, which Worktype to fetch.
+     */
+    where?: WorktypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Worktypes to fetch.
+     */
+    orderBy?: WorktypeOrderByWithRelationInput | WorktypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Worktypes.
+     */
+    cursor?: WorktypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Worktypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Worktypes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Worktypes.
+     */
+    distinct?: WorktypeScalarFieldEnum | WorktypeScalarFieldEnum[]
+  }
+
+  /**
+   * Worktype findFirstOrThrow
+   */
+  export type WorktypeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Worktype
+     */
+    select?: WorktypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Worktype
+     */
+    omit?: WorktypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorktypeInclude<ExtArgs> | null
+    /**
+     * Filter, which Worktype to fetch.
+     */
+    where?: WorktypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Worktypes to fetch.
+     */
+    orderBy?: WorktypeOrderByWithRelationInput | WorktypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Worktypes.
+     */
+    cursor?: WorktypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Worktypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Worktypes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Worktypes.
+     */
+    distinct?: WorktypeScalarFieldEnum | WorktypeScalarFieldEnum[]
+  }
+
+  /**
+   * Worktype findMany
+   */
+  export type WorktypeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Worktype
+     */
+    select?: WorktypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Worktype
+     */
+    omit?: WorktypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorktypeInclude<ExtArgs> | null
+    /**
+     * Filter, which Worktypes to fetch.
+     */
+    where?: WorktypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Worktypes to fetch.
+     */
+    orderBy?: WorktypeOrderByWithRelationInput | WorktypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Worktypes.
+     */
+    cursor?: WorktypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Worktypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Worktypes.
+     */
+    skip?: number
+    distinct?: WorktypeScalarFieldEnum | WorktypeScalarFieldEnum[]
+  }
+
+  /**
+   * Worktype create
+   */
+  export type WorktypeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Worktype
+     */
+    select?: WorktypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Worktype
+     */
+    omit?: WorktypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorktypeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Worktype.
+     */
+    data: XOR<WorktypeCreateInput, WorktypeUncheckedCreateInput>
+  }
+
+  /**
+   * Worktype createMany
+   */
+  export type WorktypeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Worktypes.
+     */
+    data: WorktypeCreateManyInput | WorktypeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Worktype createManyAndReturn
+   */
+  export type WorktypeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Worktype
+     */
+    select?: WorktypeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Worktype
+     */
+    omit?: WorktypeOmit<ExtArgs> | null
+    /**
+     * The data used to create many Worktypes.
+     */
+    data: WorktypeCreateManyInput | WorktypeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Worktype update
+   */
+  export type WorktypeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Worktype
+     */
+    select?: WorktypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Worktype
+     */
+    omit?: WorktypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorktypeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Worktype.
+     */
+    data: XOR<WorktypeUpdateInput, WorktypeUncheckedUpdateInput>
+    /**
+     * Choose, which Worktype to update.
+     */
+    where: WorktypeWhereUniqueInput
+  }
+
+  /**
+   * Worktype updateMany
+   */
+  export type WorktypeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Worktypes.
+     */
+    data: XOR<WorktypeUpdateManyMutationInput, WorktypeUncheckedUpdateManyInput>
+    /**
+     * Filter which Worktypes to update
+     */
+    where?: WorktypeWhereInput
+    /**
+     * Limit how many Worktypes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Worktype updateManyAndReturn
+   */
+  export type WorktypeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Worktype
+     */
+    select?: WorktypeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Worktype
+     */
+    omit?: WorktypeOmit<ExtArgs> | null
+    /**
+     * The data used to update Worktypes.
+     */
+    data: XOR<WorktypeUpdateManyMutationInput, WorktypeUncheckedUpdateManyInput>
+    /**
+     * Filter which Worktypes to update
+     */
+    where?: WorktypeWhereInput
+    /**
+     * Limit how many Worktypes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Worktype upsert
+   */
+  export type WorktypeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Worktype
+     */
+    select?: WorktypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Worktype
+     */
+    omit?: WorktypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorktypeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Worktype to update in case it exists.
+     */
+    where: WorktypeWhereUniqueInput
+    /**
+     * In case the Worktype found by the `where` argument doesn't exist, create a new Worktype with this data.
+     */
+    create: XOR<WorktypeCreateInput, WorktypeUncheckedCreateInput>
+    /**
+     * In case the Worktype was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WorktypeUpdateInput, WorktypeUncheckedUpdateInput>
+  }
+
+  /**
+   * Worktype delete
+   */
+  export type WorktypeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Worktype
+     */
+    select?: WorktypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Worktype
+     */
+    omit?: WorktypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorktypeInclude<ExtArgs> | null
+    /**
+     * Filter which Worktype to delete.
+     */
+    where: WorktypeWhereUniqueInput
+  }
+
+  /**
+   * Worktype deleteMany
+   */
+  export type WorktypeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Worktypes to delete
+     */
+    where?: WorktypeWhereInput
+    /**
+     * Limit how many Worktypes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Worktype.work
+   */
+  export type Worktype$workArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Work
+     */
+    select?: WorkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Work
+     */
+    omit?: WorkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkInclude<ExtArgs> | null
+    where?: WorkWhereInput
+    orderBy?: WorkOrderByWithRelationInput | WorkOrderByWithRelationInput[]
+    cursor?: WorkWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WorkScalarFieldEnum | WorkScalarFieldEnum[]
+  }
+
+  /**
+   * Worktype without action
+   */
+  export type WorktypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Worktype
+     */
+    select?: WorktypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Worktype
+     */
+    omit?: WorktypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorktypeInclude<ExtArgs> | null
   }
 
 
@@ -5871,6 +7141,7 @@ export namespace Prisma {
   export const WorkScalarFieldEnum: {
     id: 'id',
     idPreventive: 'idPreventive',
+    idWorkType: 'idWorkType',
     start_date: 'start_date',
     end_date: 'end_date',
     status: 'status',
@@ -5880,6 +7151,17 @@ export namespace Prisma {
   };
 
   export type WorkScalarFieldEnum = (typeof WorkScalarFieldEnum)[keyof typeof WorkScalarFieldEnum]
+
+
+  export const WorktypeScalarFieldEnum: {
+    id: 'id',
+    estimate_cost: 'estimate_cost',
+    standard_duration: 'standard_duration',
+    name: 'name',
+    description: 'description'
+  };
+
+  export type WorktypeScalarFieldEnum = (typeof WorktypeScalarFieldEnum)[keyof typeof WorktypeScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5896,6 +7178,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -6218,6 +7508,7 @@ export namespace Prisma {
     NOT?: WorkWhereInput | WorkWhereInput[]
     id?: StringFilter<"Work"> | string
     idPreventive?: StringFilter<"Work"> | string
+    idWorkType?: StringNullableFilter<"Work"> | string | null
     start_date?: DateTimeFilter<"Work"> | Date | string
     end_date?: DateTimeFilter<"Work"> | Date | string
     status?: StringFilter<"Work"> | string
@@ -6225,11 +7516,13 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"Work"> | Date | string
     created_at?: DateTimeFilter<"Work"> | Date | string
     preventive?: XOR<PreventiveScalarRelationFilter, PreventiveWhereInput>
+    worktype?: XOR<WorktypeNullableScalarRelationFilter, WorktypeWhereInput> | null
   }
 
   export type WorkOrderByWithRelationInput = {
     id?: SortOrder
     idPreventive?: SortOrder
+    idWorkType?: SortOrderInput | SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
     status?: SortOrder
@@ -6237,6 +7530,7 @@ export namespace Prisma {
     updated_at?: SortOrder
     created_at?: SortOrder
     preventive?: PreventiveOrderByWithRelationInput
+    worktype?: WorktypeOrderByWithRelationInput
   }
 
   export type WorkWhereUniqueInput = Prisma.AtLeast<{
@@ -6245,6 +7539,7 @@ export namespace Prisma {
     AND?: WorkWhereInput | WorkWhereInput[]
     OR?: WorkWhereInput[]
     NOT?: WorkWhereInput | WorkWhereInput[]
+    idWorkType?: StringNullableFilter<"Work"> | string | null
     start_date?: DateTimeFilter<"Work"> | Date | string
     end_date?: DateTimeFilter<"Work"> | Date | string
     status?: StringFilter<"Work"> | string
@@ -6252,11 +7547,13 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"Work"> | Date | string
     created_at?: DateTimeFilter<"Work"> | Date | string
     preventive?: XOR<PreventiveScalarRelationFilter, PreventiveWhereInput>
+    worktype?: XOR<WorktypeNullableScalarRelationFilter, WorktypeWhereInput> | null
   }, "id" | "idPreventive">
 
   export type WorkOrderByWithAggregationInput = {
     id?: SortOrder
     idPreventive?: SortOrder
+    idWorkType?: SortOrderInput | SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
     status?: SortOrder
@@ -6274,12 +7571,70 @@ export namespace Prisma {
     NOT?: WorkScalarWhereWithAggregatesInput | WorkScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Work"> | string
     idPreventive?: StringWithAggregatesFilter<"Work"> | string
+    idWorkType?: StringNullableWithAggregatesFilter<"Work"> | string | null
     start_date?: DateTimeWithAggregatesFilter<"Work"> | Date | string
     end_date?: DateTimeWithAggregatesFilter<"Work"> | Date | string
     status?: StringWithAggregatesFilter<"Work"> | string
     additional_notes?: StringWithAggregatesFilter<"Work"> | string
     updated_at?: DateTimeWithAggregatesFilter<"Work"> | Date | string
     created_at?: DateTimeWithAggregatesFilter<"Work"> | Date | string
+  }
+
+  export type WorktypeWhereInput = {
+    AND?: WorktypeWhereInput | WorktypeWhereInput[]
+    OR?: WorktypeWhereInput[]
+    NOT?: WorktypeWhereInput | WorktypeWhereInput[]
+    id?: StringFilter<"Worktype"> | string
+    estimate_cost?: IntFilter<"Worktype"> | number
+    standard_duration?: IntFilter<"Worktype"> | number
+    name?: StringFilter<"Worktype"> | string
+    description?: StringFilter<"Worktype"> | string
+    work?: WorkListRelationFilter
+  }
+
+  export type WorktypeOrderByWithRelationInput = {
+    id?: SortOrder
+    estimate_cost?: SortOrder
+    standard_duration?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    work?: WorkOrderByRelationAggregateInput
+  }
+
+  export type WorktypeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: WorktypeWhereInput | WorktypeWhereInput[]
+    OR?: WorktypeWhereInput[]
+    NOT?: WorktypeWhereInput | WorktypeWhereInput[]
+    estimate_cost?: IntFilter<"Worktype"> | number
+    standard_duration?: IntFilter<"Worktype"> | number
+    name?: StringFilter<"Worktype"> | string
+    description?: StringFilter<"Worktype"> | string
+    work?: WorkListRelationFilter
+  }, "id">
+
+  export type WorktypeOrderByWithAggregationInput = {
+    id?: SortOrder
+    estimate_cost?: SortOrder
+    standard_duration?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    _count?: WorktypeCountOrderByAggregateInput
+    _avg?: WorktypeAvgOrderByAggregateInput
+    _max?: WorktypeMaxOrderByAggregateInput
+    _min?: WorktypeMinOrderByAggregateInput
+    _sum?: WorktypeSumOrderByAggregateInput
+  }
+
+  export type WorktypeScalarWhereWithAggregatesInput = {
+    AND?: WorktypeScalarWhereWithAggregatesInput | WorktypeScalarWhereWithAggregatesInput[]
+    OR?: WorktypeScalarWhereWithAggregatesInput[]
+    NOT?: WorktypeScalarWhereWithAggregatesInput | WorktypeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Worktype"> | string
+    estimate_cost?: IntWithAggregatesFilter<"Worktype"> | number
+    standard_duration?: IntWithAggregatesFilter<"Worktype"> | number
+    name?: StringWithAggregatesFilter<"Worktype"> | string
+    description?: StringWithAggregatesFilter<"Worktype"> | string
   }
 
   export type UserCreateInput = {
@@ -6574,11 +7929,13 @@ export namespace Prisma {
     updated_at?: Date | string
     created_at?: Date | string
     preventive: PreventiveCreateNestedOneWithoutWorkInput
+    worktype?: WorktypeCreateNestedOneWithoutWorkInput
   }
 
   export type WorkUncheckedCreateInput = {
     id?: string
     idPreventive: string
+    idWorkType?: string | null
     start_date: Date | string
     end_date: Date | string
     status: string
@@ -6596,11 +7953,13 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     preventive?: PreventiveUpdateOneRequiredWithoutWorkNestedInput
+    worktype?: WorktypeUpdateOneWithoutWorkNestedInput
   }
 
   export type WorkUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     idPreventive?: StringFieldUpdateOperationsInput | string
+    idWorkType?: NullableStringFieldUpdateOperationsInput | string | null
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: StringFieldUpdateOperationsInput | string
@@ -6612,6 +7971,7 @@ export namespace Prisma {
   export type WorkCreateManyInput = {
     id?: string
     idPreventive: string
+    idWorkType?: string | null
     start_date: Date | string
     end_date: Date | string
     status: string
@@ -6633,12 +7993,73 @@ export namespace Prisma {
   export type WorkUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     idPreventive?: StringFieldUpdateOperationsInput | string
+    idWorkType?: NullableStringFieldUpdateOperationsInput | string | null
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: StringFieldUpdateOperationsInput | string
     additional_notes?: StringFieldUpdateOperationsInput | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WorktypeCreateInput = {
+    id?: string
+    estimate_cost: number
+    standard_duration: number
+    name: string
+    description: string
+    work?: WorkCreateNestedManyWithoutWorktypeInput
+  }
+
+  export type WorktypeUncheckedCreateInput = {
+    id?: string
+    estimate_cost: number
+    standard_duration: number
+    name: string
+    description: string
+    work?: WorkUncheckedCreateNestedManyWithoutWorktypeInput
+  }
+
+  export type WorktypeUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    estimate_cost?: IntFieldUpdateOperationsInput | number
+    standard_duration?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    work?: WorkUpdateManyWithoutWorktypeNestedInput
+  }
+
+  export type WorktypeUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    estimate_cost?: IntFieldUpdateOperationsInput | number
+    standard_duration?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    work?: WorkUncheckedUpdateManyWithoutWorktypeNestedInput
+  }
+
+  export type WorktypeCreateManyInput = {
+    id?: string
+    estimate_cost: number
+    standard_duration: number
+    name: string
+    description: string
+  }
+
+  export type WorktypeUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    estimate_cost?: IntFieldUpdateOperationsInput | number
+    standard_duration?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WorktypeUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    estimate_cost?: IntFieldUpdateOperationsInput | number
+    standard_duration?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -6896,14 +8317,40 @@ export namespace Prisma {
     discount?: SortOrder
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type PreventiveScalarRelationFilter = {
     is?: PreventiveWhereInput
     isNot?: PreventiveWhereInput
   }
 
+  export type WorktypeNullableScalarRelationFilter = {
+    is?: WorktypeWhereInput | null
+    isNot?: WorktypeWhereInput | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type WorkCountOrderByAggregateInput = {
     id?: SortOrder
     idPreventive?: SortOrder
+    idWorkType?: SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
     status?: SortOrder
@@ -6915,6 +8362,7 @@ export namespace Prisma {
   export type WorkMaxOrderByAggregateInput = {
     id?: SortOrder
     idPreventive?: SortOrder
+    idWorkType?: SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
     status?: SortOrder
@@ -6926,12 +8374,75 @@ export namespace Prisma {
   export type WorkMinOrderByAggregateInput = {
     id?: SortOrder
     idPreventive?: SortOrder
+    idWorkType?: SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
     status?: SortOrder
     additional_notes?: SortOrder
     updated_at?: SortOrder
     created_at?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type WorkListRelationFilter = {
+    every?: WorkWhereInput
+    some?: WorkWhereInput
+    none?: WorkWhereInput
+  }
+
+  export type WorkOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type WorktypeCountOrderByAggregateInput = {
+    id?: SortOrder
+    estimate_cost?: SortOrder
+    standard_duration?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+  }
+
+  export type WorktypeAvgOrderByAggregateInput = {
+    estimate_cost?: SortOrder
+    standard_duration?: SortOrder
+  }
+
+  export type WorktypeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    estimate_cost?: SortOrder
+    standard_duration?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+  }
+
+  export type WorktypeMinOrderByAggregateInput = {
+    id?: SortOrder
+    estimate_cost?: SortOrder
+    standard_duration?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+  }
+
+  export type WorktypeSumOrderByAggregateInput = {
+    estimate_cost?: SortOrder
+    standard_duration?: SortOrder
   }
 
   export type VehicleCreateNestedManyWithoutUserInput = {
@@ -7100,12 +8611,74 @@ export namespace Prisma {
     connect?: PreventiveWhereUniqueInput
   }
 
+  export type WorktypeCreateNestedOneWithoutWorkInput = {
+    create?: XOR<WorktypeCreateWithoutWorkInput, WorktypeUncheckedCreateWithoutWorkInput>
+    connectOrCreate?: WorktypeCreateOrConnectWithoutWorkInput
+    connect?: WorktypeWhereUniqueInput
+  }
+
   export type PreventiveUpdateOneRequiredWithoutWorkNestedInput = {
     create?: XOR<PreventiveCreateWithoutWorkInput, PreventiveUncheckedCreateWithoutWorkInput>
     connectOrCreate?: PreventiveCreateOrConnectWithoutWorkInput
     upsert?: PreventiveUpsertWithoutWorkInput
     connect?: PreventiveWhereUniqueInput
     update?: XOR<XOR<PreventiveUpdateToOneWithWhereWithoutWorkInput, PreventiveUpdateWithoutWorkInput>, PreventiveUncheckedUpdateWithoutWorkInput>
+  }
+
+  export type WorktypeUpdateOneWithoutWorkNestedInput = {
+    create?: XOR<WorktypeCreateWithoutWorkInput, WorktypeUncheckedCreateWithoutWorkInput>
+    connectOrCreate?: WorktypeCreateOrConnectWithoutWorkInput
+    upsert?: WorktypeUpsertWithoutWorkInput
+    disconnect?: WorktypeWhereInput | boolean
+    delete?: WorktypeWhereInput | boolean
+    connect?: WorktypeWhereUniqueInput
+    update?: XOR<XOR<WorktypeUpdateToOneWithWhereWithoutWorkInput, WorktypeUpdateWithoutWorkInput>, WorktypeUncheckedUpdateWithoutWorkInput>
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type WorkCreateNestedManyWithoutWorktypeInput = {
+    create?: XOR<WorkCreateWithoutWorktypeInput, WorkUncheckedCreateWithoutWorktypeInput> | WorkCreateWithoutWorktypeInput[] | WorkUncheckedCreateWithoutWorktypeInput[]
+    connectOrCreate?: WorkCreateOrConnectWithoutWorktypeInput | WorkCreateOrConnectWithoutWorktypeInput[]
+    createMany?: WorkCreateManyWorktypeInputEnvelope
+    connect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+  }
+
+  export type WorkUncheckedCreateNestedManyWithoutWorktypeInput = {
+    create?: XOR<WorkCreateWithoutWorktypeInput, WorkUncheckedCreateWithoutWorktypeInput> | WorkCreateWithoutWorktypeInput[] | WorkUncheckedCreateWithoutWorktypeInput[]
+    connectOrCreate?: WorkCreateOrConnectWithoutWorktypeInput | WorkCreateOrConnectWithoutWorktypeInput[]
+    createMany?: WorkCreateManyWorktypeInputEnvelope
+    connect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+  }
+
+  export type WorkUpdateManyWithoutWorktypeNestedInput = {
+    create?: XOR<WorkCreateWithoutWorktypeInput, WorkUncheckedCreateWithoutWorktypeInput> | WorkCreateWithoutWorktypeInput[] | WorkUncheckedCreateWithoutWorktypeInput[]
+    connectOrCreate?: WorkCreateOrConnectWithoutWorktypeInput | WorkCreateOrConnectWithoutWorktypeInput[]
+    upsert?: WorkUpsertWithWhereUniqueWithoutWorktypeInput | WorkUpsertWithWhereUniqueWithoutWorktypeInput[]
+    createMany?: WorkCreateManyWorktypeInputEnvelope
+    set?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    disconnect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    delete?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    connect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    update?: WorkUpdateWithWhereUniqueWithoutWorktypeInput | WorkUpdateWithWhereUniqueWithoutWorktypeInput[]
+    updateMany?: WorkUpdateManyWithWhereWithoutWorktypeInput | WorkUpdateManyWithWhereWithoutWorktypeInput[]
+    deleteMany?: WorkScalarWhereInput | WorkScalarWhereInput[]
+  }
+
+  export type WorkUncheckedUpdateManyWithoutWorktypeNestedInput = {
+    create?: XOR<WorkCreateWithoutWorktypeInput, WorkUncheckedCreateWithoutWorktypeInput> | WorkCreateWithoutWorktypeInput[] | WorkUncheckedCreateWithoutWorktypeInput[]
+    connectOrCreate?: WorkCreateOrConnectWithoutWorktypeInput | WorkCreateOrConnectWithoutWorktypeInput[]
+    upsert?: WorkUpsertWithWhereUniqueWithoutWorktypeInput | WorkUpsertWithWhereUniqueWithoutWorktypeInput[]
+    createMany?: WorkCreateManyWorktypeInputEnvelope
+    set?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    disconnect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    delete?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    connect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    update?: WorkUpdateWithWhereUniqueWithoutWorktypeInput | WorkUpdateWithWhereUniqueWithoutWorktypeInput[]
+    updateMany?: WorkUpdateManyWithWhereWithoutWorktypeInput | WorkUpdateManyWithWhereWithoutWorktypeInput[]
+    deleteMany?: WorkScalarWhereInput | WorkScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -7200,6 +8773,48 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type VehicleCreateWithoutUserInput = {
@@ -7441,10 +9056,12 @@ export namespace Prisma {
     additional_notes: string
     updated_at?: Date | string
     created_at?: Date | string
+    worktype?: WorktypeCreateNestedOneWithoutWorkInput
   }
 
   export type WorkUncheckedCreateWithoutPreventiveInput = {
     id?: string
+    idWorkType?: string | null
     start_date: Date | string
     end_date: Date | string
     status: string
@@ -7506,10 +9123,12 @@ export namespace Prisma {
     additional_notes?: StringFieldUpdateOperationsInput | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    worktype?: WorktypeUpdateOneWithoutWorkNestedInput
   }
 
   export type WorkUncheckedUpdateWithoutPreventiveInput = {
     id?: StringFieldUpdateOperationsInput | string
+    idWorkType?: NullableStringFieldUpdateOperationsInput | string | null
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: StringFieldUpdateOperationsInput | string
@@ -7549,6 +9168,27 @@ export namespace Prisma {
     create: XOR<PreventiveCreateWithoutWorkInput, PreventiveUncheckedCreateWithoutWorkInput>
   }
 
+  export type WorktypeCreateWithoutWorkInput = {
+    id?: string
+    estimate_cost: number
+    standard_duration: number
+    name: string
+    description: string
+  }
+
+  export type WorktypeUncheckedCreateWithoutWorkInput = {
+    id?: string
+    estimate_cost: number
+    standard_duration: number
+    name: string
+    description: string
+  }
+
+  export type WorktypeCreateOrConnectWithoutWorkInput = {
+    where: WorktypeWhereUniqueInput
+    create: XOR<WorktypeCreateWithoutWorkInput, WorktypeUncheckedCreateWithoutWorkInput>
+  }
+
   export type PreventiveUpsertWithoutWorkInput = {
     update: XOR<PreventiveUpdateWithoutWorkInput, PreventiveUncheckedUpdateWithoutWorkInput>
     create: XOR<PreventiveCreateWithoutWorkInput, PreventiveUncheckedCreateWithoutWorkInput>
@@ -7584,6 +9224,96 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WorktypeUpsertWithoutWorkInput = {
+    update: XOR<WorktypeUpdateWithoutWorkInput, WorktypeUncheckedUpdateWithoutWorkInput>
+    create: XOR<WorktypeCreateWithoutWorkInput, WorktypeUncheckedCreateWithoutWorkInput>
+    where?: WorktypeWhereInput
+  }
+
+  export type WorktypeUpdateToOneWithWhereWithoutWorkInput = {
+    where?: WorktypeWhereInput
+    data: XOR<WorktypeUpdateWithoutWorkInput, WorktypeUncheckedUpdateWithoutWorkInput>
+  }
+
+  export type WorktypeUpdateWithoutWorkInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    estimate_cost?: IntFieldUpdateOperationsInput | number
+    standard_duration?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WorktypeUncheckedUpdateWithoutWorkInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    estimate_cost?: IntFieldUpdateOperationsInput | number
+    standard_duration?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WorkCreateWithoutWorktypeInput = {
+    id?: string
+    start_date: Date | string
+    end_date: Date | string
+    status: string
+    additional_notes: string
+    updated_at?: Date | string
+    created_at?: Date | string
+    preventive: PreventiveCreateNestedOneWithoutWorkInput
+  }
+
+  export type WorkUncheckedCreateWithoutWorktypeInput = {
+    id?: string
+    idPreventive: string
+    start_date: Date | string
+    end_date: Date | string
+    status: string
+    additional_notes: string
+    updated_at?: Date | string
+    created_at?: Date | string
+  }
+
+  export type WorkCreateOrConnectWithoutWorktypeInput = {
+    where: WorkWhereUniqueInput
+    create: XOR<WorkCreateWithoutWorktypeInput, WorkUncheckedCreateWithoutWorktypeInput>
+  }
+
+  export type WorkCreateManyWorktypeInputEnvelope = {
+    data: WorkCreateManyWorktypeInput | WorkCreateManyWorktypeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type WorkUpsertWithWhereUniqueWithoutWorktypeInput = {
+    where: WorkWhereUniqueInput
+    update: XOR<WorkUpdateWithoutWorktypeInput, WorkUncheckedUpdateWithoutWorktypeInput>
+    create: XOR<WorkCreateWithoutWorktypeInput, WorkUncheckedCreateWithoutWorktypeInput>
+  }
+
+  export type WorkUpdateWithWhereUniqueWithoutWorktypeInput = {
+    where: WorkWhereUniqueInput
+    data: XOR<WorkUpdateWithoutWorktypeInput, WorkUncheckedUpdateWithoutWorktypeInput>
+  }
+
+  export type WorkUpdateManyWithWhereWithoutWorktypeInput = {
+    where: WorkScalarWhereInput
+    data: XOR<WorkUpdateManyMutationInput, WorkUncheckedUpdateManyWithoutWorktypeInput>
+  }
+
+  export type WorkScalarWhereInput = {
+    AND?: WorkScalarWhereInput | WorkScalarWhereInput[]
+    OR?: WorkScalarWhereInput[]
+    NOT?: WorkScalarWhereInput | WorkScalarWhereInput[]
+    id?: StringFilter<"Work"> | string
+    idPreventive?: StringFilter<"Work"> | string
+    idWorkType?: StringNullableFilter<"Work"> | string | null
+    start_date?: DateTimeFilter<"Work"> | Date | string
+    end_date?: DateTimeFilter<"Work"> | Date | string
+    status?: StringFilter<"Work"> | string
+    additional_notes?: StringFilter<"Work"> | string
+    updated_at?: DateTimeFilter<"Work"> | Date | string
+    created_at?: DateTimeFilter<"Work"> | Date | string
   }
 
   export type VehicleCreateManyUserInput = {
@@ -7666,6 +9396,50 @@ export namespace Prisma {
     e_end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     additional_notes?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WorkCreateManyWorktypeInput = {
+    id?: string
+    idPreventive: string
+    start_date: Date | string
+    end_date: Date | string
+    status: string
+    additional_notes: string
+    updated_at?: Date | string
+    created_at?: Date | string
+  }
+
+  export type WorkUpdateWithoutWorktypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    additional_notes?: StringFieldUpdateOperationsInput | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    preventive?: PreventiveUpdateOneRequiredWithoutWorkNestedInput
+  }
+
+  export type WorkUncheckedUpdateWithoutWorktypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    idPreventive?: StringFieldUpdateOperationsInput | string
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    additional_notes?: StringFieldUpdateOperationsInput | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WorkUncheckedUpdateManyWithoutWorktypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    idPreventive?: StringFieldUpdateOperationsInput | string
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    additional_notes?: StringFieldUpdateOperationsInput | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }

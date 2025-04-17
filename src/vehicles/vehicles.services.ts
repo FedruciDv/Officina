@@ -39,8 +39,6 @@ export class VehiclesService{
         catch(error){
             throw new Error("C'è stato un problema")
         }
-       
-
     }
 
     async edit(vehicle : EditVehicleDTO) : Promise<VehicleDTO> {
@@ -58,7 +56,6 @@ export class VehiclesService{
         catch(error){
             throw new Error("C'è stato un problema")
         }
-
     }
 
  }
