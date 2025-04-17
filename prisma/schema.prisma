@@ -1,0 +1,71 @@
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL") // You can set your connection string here
+}
+
+model User {
+  id                     String       @id @default(uuid())
+  email                  String    @unique
+  phone   String
+  username               String
+  password               String
+  license_code           String
+  license_expiration_date DateTime
+  first_name            String
+  last_name             String
+  municipality_residence String
+  fiscal_code           String
+  status                String
+  updated_at            DateTime  @default(now())
+  created_at            DateTime  @default(now())
+  vehicles Vehicle[]
+}
+
+model Vehicle{
+  id String @id @default(uuid())
+  userId  String 
+  plate String @unique
+  model String
+  brand String
+  km Int
+  preventives Preventive[]
+  user User @relation(fields:[userId],references:[id])
+}
+
+model Preventive {
+
+  id String @id @default(uuid())
+  idVehicle String
+  description String 
+  cost Int
+  discount Int
+  e_end_date DateTime
+  additional_notes String
+  type String
+  updated_at            DateTime  @default(now())
+  created_at            DateTime  @default(now())
+  vehicle Vehicle @relation(fields:[idVehicle],references:[id])
+  work Work?
+}
+
+model Work {
+
+  id String @id @default(uuid())
+  idPreventive String @unique
+  start_date DateTime
+  end_date DateTime
+  status String
+  additional_notes String
+  updated_at            DateTime  @default(now())
+  created_at            DateTime  @default(now())
+
+  preventive Preventive @relation(fields: [idPreventive], references: [id])
+
+
+}
