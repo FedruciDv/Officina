@@ -11,7 +11,7 @@ export class UserServices{
     constructor(private prisma : PrismaService){}
 
     async findAll() : Promise<UserDTO[]> {
-        const result= await this.prisma.user.findMany({include:{vehicles:{omit:{userId:true},include:{preventives:true}}}});        
+        const result= await this.prisma.user.findMany({include:{vehicles:{omit:{userId:true},include:{preventives:{include:{work:true}}}}}});        
         return plainToInstance(UserDTO,result,{excludeExtraneousValues:true})
     }
 
@@ -21,8 +21,10 @@ export class UserServices{
             throw new Error("Email gia in uso!")
         }
         user.password=await bcrypt.hash(user.password,10);
-        const result= await this.prisma.user.create({data:{...user}});
+        const result= await this.prisma.user.create({data:{...user},omit:{password:true}});
         return plainToInstance(UserDTO,result,{excludeExtraneousValues:true})
     }
+
+
 
  }

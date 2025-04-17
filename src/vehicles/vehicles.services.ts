@@ -15,7 +15,10 @@ export class VehiclesService{
 
     async findAll() : Promise<VehicleDTO[]> {
         try{
-            const result= await this.prisma.vehicle.findMany({include:{preventives:true}});
+            const result= await this.prisma.vehicle.findMany(
+                {
+                    include:{preventives:true}
+                });
             return plainToInstance(VehicleDTO,result,{excludeExtraneousValues:true})
         }
         catch(error){

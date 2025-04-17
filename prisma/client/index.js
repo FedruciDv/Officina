@@ -211,11 +211,12 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DB_URL",
-        "value": "postgresql://fedrucidev:@localhost:5432/officina"
+        "value": null
       }
     }
   },

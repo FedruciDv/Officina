@@ -1,6 +1,7 @@
 import { Expose } from 'class-transformer';
 import {
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsString,
   IsUUID
@@ -35,5 +36,10 @@ export default class EditVehicleDTO{
   @IsOptional()
   @Expose()
   brand?: string;
+
+  @IsNumber()
+  @IsOptional()
+  @Expose()
+  km : number;
 
 }

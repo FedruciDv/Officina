@@ -9,6 +9,7 @@ import {
   IsObject,
   IsInt
 } from 'class-validator';
+import UserDTO from 'src/users/dto/user.dto';
 
 export default class VehicleDTO {
   @IsUUID()
@@ -40,6 +41,10 @@ export default class VehicleDTO {
   @IsNotEmpty()
   @Expose()
   km: number
+
+  @IsObject()
+  @Expose()
+  user?: UserDTO[]
 
   @IsObject()
   @Expose()

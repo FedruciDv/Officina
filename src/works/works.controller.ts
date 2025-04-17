@@ -1,15 +1,16 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post, Query } from "@nestjs/common";
 import { WorksService } from "./works.service";
 import { WorkDTO } from "./dto/work.dto";
 import { CreateWorkDTO } from "./dto/create_work.dto";
+import { FilterWorkDTO } from "./dto/filter.dto";
 
 @Controller("works")
 export class WorksController{
 
     constructor(private works : WorksService){}
     @Get("/")
-    async get() : Promise<WorkDTO[]>{
-        return await this.works.findAll()
+    async get(@Query() filter : FilterWorkDTO) : Promise<WorkDTO[]>{
+        return await this.works.findAll(filter)
     }
 
     @Post("/create")

@@ -3,17 +3,29 @@ import { PrismaService } from "src/prisma/prisma.service";
 import { WorkDTO } from "./dto/work.dto";
 import { plainToInstance } from "class-transformer";
 import { CreateWorkDTO } from "./dto/create_work.dto";
+import { FilterWorkDTO } from "./dto/filter.dto";
 
 @Injectable()
 export class WorksService{
 
     constructor( private prisma : PrismaService){}
 
-    async findAll() : Promise<WorkDTO[]>{
+    async findAll(filter : FilterWorkDTO) : Promise<WorkDTO[]>{
+        const filters={
+            id:filter?.id,
+            preventive:{
+                id:filter.idPreventive,
+                idVehicle:filter?.idVehicle 
+            }
+        }
+        
         try{
             const works= await this.prisma.work.findMany({
                 include:{
-                    preventive:true
+                    preventive:true,
+                },
+                where:{
+                    ...filters
                 }
             })
 

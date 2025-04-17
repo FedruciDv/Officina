@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
     }
 
     try {
-      const payload = this.JwtVerify(token);
+      const payload = AuthGuard.JwtVerify(token);
       req['user'] = payload;
       return true;
     } catch (err) {
@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
     }
   }
 
-  private   JwtVerify(token: string) {
+    static JwtVerify(token: string) {
     return jwt.verify(token, process.env.SECRET_KEY);
   }
 }
